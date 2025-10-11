@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  php:
+    image: php:8.3-apache   # Use official PHP + Apache image
+    ports:
+      - "8080:80"           # Map your PC’s port 8080 → container’s port 80
+    volumes:
+      - .:/var/www/html     # Mount your current folder into the container’s web root
