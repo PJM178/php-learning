@@ -8,10 +8,10 @@ services:
       MYSQL_DATABASE: appdb
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-    volumes:
-      - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
 
   # PHP running on Apache
   php:
@@ -29,7 +29,6 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     container_name: phpmyadmin
-    restart: always
     environment:
       PMA_HOST: db
       PMA_USER: root
@@ -38,5 +37,3 @@ services:
       - "8081:80"
     depends_on:
       - db
-volumes:
-  db_data:
