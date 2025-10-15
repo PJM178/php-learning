@@ -16,7 +16,6 @@
   echo "PHP version: " . $versionNumber;
   echo "what" . $versionNumber;
   ?>
-
 </body>
 
 </html>

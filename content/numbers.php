@@ -80,6 +80,13 @@
   echo "<br />";
   $x =  (int) "1234.99";
   echo $x;
+
+  $users = [
+    ["id" => 1, "name" => "Alice"],
+    ["id" => 2, "name" => "Bob"]
+  ];
+
+  print_r($users);
   ?>
 </body>
 

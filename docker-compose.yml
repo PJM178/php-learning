@@ -1,7 +1,42 @@
 services:
+  # MySQL database
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  # PHP running on Apache
   php:
     image: php:8.3-apache   # Use official PHP + Apache image
+    depends_on:
+      - db
     ports:
       - "8080:80"           # Map your PC’s port 8080 → container’s port 80
     volumes:
       - .:/var/www/html     # Mount your current folder into the container’s web root
+    # Install mysqli or pdo_mysql extensions
+    command: bash -c "docker-php-ext-install mysqli pdo pdo_mysql && apache2-foreground"
+
+  # phpMyAdmin for DB management
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+volumes:
+  db_data:
