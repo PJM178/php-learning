@@ -24,6 +24,7 @@
     while ($row = $result->fetch_assoc()) {
       echo "<li>ID: " . $row["id"] . " - " . $row["username"] . " (" . $row["email"] . ")</li>";
     }
+    
     echo "</ul>";
   } else {
     echo "No users found.";
