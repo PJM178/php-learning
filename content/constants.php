@@ -34,6 +34,8 @@
 
   echo "<br />";
   myCar();
+
+  // There are also bunch of Magic Constants that do stuff based on where they are used
   ?>
 </body>
 
