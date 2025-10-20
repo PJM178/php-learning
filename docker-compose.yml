@@ -23,7 +23,7 @@ services:
     volumes:
       - .:/var/www/html     # Mount your current folder into the container’s web root
     # Install mysqli or pdo_mysql extensions
-    command: bash -c "docker-php-ext-install mysqli pdo pdo_mysql && apache2-foreground"
+    command: bash -c "echo 'ServerName localhost' >> /etc/apache2/apache2.conf && docker-php-ext-install mysqli pdo pdo_mysql && apache2-foreground"
 
   # phpMyAdmin for DB management
   phpmyadmin:
